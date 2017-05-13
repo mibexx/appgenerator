@@ -3,16 +3,29 @@
 namespace mibexx\AppGenerator;
 
 
+use mibexx\AppGenerator\DependencyInjection\DiContainer;
+
 class AppGenerator
 {
-
-    private $diFacade;
+    /**
+     * @var DiContainer
+     */
+    private $di;
 
     /**
      * AppGenerator constructor.
      */
     public function __construct()
     {
-        $this->diFacade = new mibexx\AppGenerator\DependencyInjection\Facade();
+        $facade = new \mibexx\AppGenerator\DependencyInjection\Facade();
+        $this->di = $facade->getDi();
+    }
+
+    /**
+     * @return DiContainer
+     */
+    public function getDi()
+    {
+        return $this->di;
     }
 }

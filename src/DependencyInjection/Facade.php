@@ -14,11 +14,24 @@ class Facade
      * Facade constructor.
      * @param DiFactoryInterface $factory
      */
-    public function __construct(DiFactoryInterface $factory = null)
+    public function __construct()
     {
-        if ($factory === null) {
-            $factory = new DiFactory();
-        }
+        $this->factory = new DiFactory();
+    }
+
+    /**
+     * @return DiFactoryInterface
+     */
+    public function getFactory(): DiFactoryInterface
+    {
+        return $this->factory;
+    }
+
+    /**
+     * @param DiFactoryInterface $factory
+     */
+    public function setFactory(DiFactoryInterface $factory)
+    {
         $this->factory = $factory;
     }
 
@@ -27,6 +40,6 @@ class Facade
      */
     public function getDi()
     {
-        return $this->factory->get();
+        return $this->getFactory()->get();
     }
 }
