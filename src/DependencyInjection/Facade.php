@@ -3,7 +3,7 @@
 namespace mibexx\AppGenerator\DependencyInjection;
 
 
-class Facade
+class Facade implements DiFacadeInterface
 {
     /**
      * @var DiFactoryInterface
@@ -20,26 +20,29 @@ class Facade
     }
 
     /**
+     * @param $name
+     * @param callable $service
+     * @return null
+     */
+    public function setService($name, callable $service)
+    {
+        $this->getFactory()->get()->set($name, $service);
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function getService($name)
+    {
+        return $this->getFactory()->get()->get($name);
+    }
+
+    /**
      * @return DiFactoryInterface
      */
-    public function getFactory(): DiFactoryInterface
+    private function getFactory()
     {
         return $this->factory;
-    }
-
-    /**
-     * @param DiFactoryInterface $factory
-     */
-    public function setFactory(DiFactoryInterface $factory)
-    {
-        $this->factory = $factory;
-    }
-
-    /**
-     * @return DiContainer
-     */
-    public function getDi()
-    {
-        return $this->getFactory()->get();
     }
 }
