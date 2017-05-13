@@ -16,8 +16,8 @@
   },
   "autoload"   : {
     "psr-4"                : {
-      "mibexx\\appgenerator\\"      : "src",
-      "mibexx\\appgenerator\\test\\": "tests"
+      "mibexx\\AppGenerator\\"      : "src",
+      "mibexx\\AppGenerator\\Test\\": "tests"
     },
     "exclude-from-classmap": [
       "/tests/"
